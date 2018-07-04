@@ -11,10 +11,13 @@ Most of the codes included in this repository are copied or recreated from chain
 
 This example requires the following packages.
 
+- Chainer >4.0
+- Cupy >4.0 (if you use GPU)
 - PIL
-- [pycocotools](https://github.com/cocodataset/cocoapi/tree/master/PythonAPI)
+- pycocotools
 
-To install pycocotools, clone the repository and run `pip install -e .` from `cocoapi/PythonAPI` where `setup.py` is located.
+Pycocotools that an encoding issue of json loading is fixed is enclosed as submodule in this repository.
+To install pycocotools, run `pip install -e .` from `cocoapi/PythonAPI` where `setup.py` is located.
 
 ## Model Overview
 
@@ -31,7 +34,7 @@ When training with LSTM, you may want to specify the maximum caption length `--m
 
 ## Dataset
 
-Run the following command to download the MSCOCO captioning dataset for training this model.
+Run the following command to download the MSCOCO captioning dataset and the STAIR Captions for training this model.
 
 ```bash
 $ python download.py
@@ -46,8 +49,9 @@ Notice that this may take a while and that it requires approximately 20 GB of di
 Once `download.py` finishes, you can start training the model.
 
 ```bash
-$ python train.py --rnn nsteplstm --snapshot-iter 1000 --max-iters 50000 --batch-size 128 --gpu 0
+$ python train.py --rnn nsteplstm --snapshot-iter 1000 --max-iters 50000 --batch-size 128 --gpu 0 --dataset-name mscoco
 ```
+You can also train the model using the STAIR Captions by setting `--dataset-name stair_captions`.
 
 If you run this script on Linux, setting the environmental variable `MPLBACKEND` to `Agg` may be required to use `matplotlib`. For example,
 
@@ -66,9 +70,9 @@ To generate captions for new images, you need to have a snapshot of a trained mo
 Assuming we are using the model snapshots from the training example after 20000 iterations, we can generate new captions as follows.
 
 ```bash
-$ python predict.py --img cat.jpg --model result/model_20000 --rnn nsteplstm --max-caption-length 30 --gpu 0
+$ python predict.py --img cat.jpg --model result/model_20000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco
 ```
 
 It will print out the generated captions to std out.
 If you want to generate captions to all images in a directory, replace `--img` with `--img-dir` followed by the directory.
-Note that `--rnn` needs to given the correct value corresponding to the model.
+Note that `--rnn` and `--dataset-name` need to given the correct value corresponding to the model.
