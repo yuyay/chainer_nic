@@ -76,3 +76,16 @@ $ python predict.py --img cat.jpg --model result/model_20000 --rnn nsteplstm --m
 It will print out the generated captions to std out.
 If you want to generate captions to all images in a directory, replace `--img` with `--img-dir` followed by the directory.
 Note that `--rnn` and `--dataset-name` need to given the correct value corresponding to the model.
+
+## Pretrained Models
+
+We provided the models trained on the MSCOCO and the STAIR Captions.
+You can download them placed on Google drive from the following links.
+
+| Iteration 	| MSCOCO (en) 	| STAIR Captions (ja) 	|
+|----------:	|:-----------:	|:-------------------:	|
+| 10000     	|             	|                     	|
+| 20000     	|             	|                     	|
+| 30000     	|             	|                     	|
+| 40000     	|             	|                     	|
+| 50000     	|             	|                     	|
