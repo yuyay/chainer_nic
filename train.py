@@ -48,8 +48,8 @@ def main():
         train_anno = "annotations/captions_train2014.json"
         val_anno = "annotations/captions_val2014.json"
     elif args.dataset_name == "stair_captions":
-        train_anno = "annotations/stair_captions_v1.2_train_tokenize.json"
-        val_anno = "annotations/stair_captions_v1.2_val_tokenize.json"
+        train_anno = "annotations/stair_captions_v1.2_train_tokenized.json"
+        val_anno = "annotations/stair_captions_v1.2_val_tokenized.json"
 
     # Load the MSCOCO dataset. Assumes that the dataset has been downloaded
     # already using e.g. the `download.py` script
