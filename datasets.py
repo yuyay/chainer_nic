@@ -21,12 +21,11 @@ _ignore = -1
 def split(sentence):
     return sentence.lower().replace('.', ' .').replace(',', ' ,').split()
 
-
 class MsCocoDataset(dataset.DatasetMixin):
 
     """Wraps the MSCOCO datasets and is used by the iterator to fetch data."""
 
-    def __init__(self, root_dir, data_dir, anno_file):
+    def __init__(self, root_dir, data_dir, anno_file, dataset_name="mscoco"):
         coco = COCO(os.path.join(root_dir, anno_file))
         anns = coco.loadAnns(coco.getAnnIds())
 
@@ -35,6 +34,7 @@ class MsCocoDataset(dataset.DatasetMixin):
         self.vocab = None  # Later set from outside
         self.coco_root = root_dir
         self.coco_data = data_dir
+        self.dataset_name = dataset_name
 
     def __len__(self):
         return len(self.anns)
@@ -63,8 +63,14 @@ class MsCocoDataset(dataset.DatasetMixin):
             raise ValueError('Invalid image mode {}'.format(img.mode))
 
         # Load the caption, i.e. sequence of tokens
-        tokens = [self.vocab.get(w, _unk) for w in
-                  ['<bos>'] + split(ann['caption']) + ['<eos>']]
+        if self.dataset_name == "mscoco":
+            tokens = [self.vocab.get(w, _unk) for w in
+                    ['<bos>'] + split(ann['caption']) + ['<eos>']]
+        elif self.dataset_name == "stair_captions":
+            tokens = [self.vocab.get(w, _unk) for w in
+                    ['<bos>'] + split(ann['tokenized_caption']) + ['<eos>']]
+        else:
+            raise Exception("Invalid dataset_name: {}".format(self.dataset_name))
         tokens = np.array(tokens, np.int32)
 
         return img, tokens
@@ -76,7 +82,8 @@ def get_mscoco(
         train_anno='annotations/captions_train2014.json',
         val_dir='val2014',
         val_anno='annotations/captions_val2014.json',
-        unk_threshold=5):
+        unk_threshold=5,
+        dataset_name="mscoco"):
     """Return the training and validation datasets for MSCOCO.
 
     The datasets can be used by the iterator during training.
@@ -84,12 +91,17 @@ def get_mscoco(
     A vocabulary is dynamically created based on all captions and is
     returned as members of the training and validation dataset objects.
     """
-    train = MsCocoDataset(root_dir, train_dir, train_anno)
-    val = MsCocoDataset(root_dir, val_dir, val_anno)
+    train = MsCocoDataset(root_dir, train_dir, train_anno, dataset_name=dataset_name)
+    val = MsCocoDataset(root_dir, val_dir, val_anno, dataset_name=dataset_name)
 
     # Create a vocabulary based on the captions from the training set only
     # (excluding the validation sets). This is common practice.
-    captions = [ann['caption'] for ann in train.anns]
+    if dataset_name == "mscoco":
+        captions = [ann['caption'] for ann in train.anns]
+    elif dataset_name == "stair_captions":
+        captions = [ann['tokenized_caption'] for ann in train.anns]
+    else:
+        raise Exception("Invalid dataset_name: {}".format(dataset_name))
 
     # Filter out rare words as UNK
     word_counts = defaultdict(int)

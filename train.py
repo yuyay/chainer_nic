@@ -16,8 +16,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--out', type=str, default='result',
                         help='Output directory')
+    parser.add_argument('--dataset-name', type=str, default='mscoco', choices=["mscoco", "stair_captions"]
+                        help='MSCOCO dataset root directory')
     parser.add_argument('--mscoco-root', type=str, default='data',
-                        help='MSOCO dataset root directory')
+                        help='MSCOCO dataset root directory')
     parser.add_argument('--max-iters', type=int, default=50000,
                         help='Maximum number of iterations to train')
     parser.add_argument('--batch-size', type=int, default=128,
@@ -41,9 +43,18 @@ def main():
                         help='Maxium caption length when using LSTM layer')
     args = parser.parse_args()
 
+    # Set path to annotation files
+    if args.dataset_name == "mscoco":
+        train_anno = "annotations/captions_train2014.json"
+        val_anno = "annotations/captions_val2014.json"
+    elif args.dataset_name == "stair_captions":
+        train_anno = "annotations/stair_captions_v1.2_train_tokenize.json"
+        val_anno = "annotations/stair_captions_v1.2_val_tokenize.json"
+
     # Load the MSCOCO dataset. Assumes that the dataset has been downloaded
     # already using e.g. the `download.py` script
-    train, val = datasets.get_mscoco(args.mscoco_root)
+    train, val = datasets.get_mscoco(
+        args.mscoco_root, train_anno=train_anno, val_anno=val_anno, dataset_name=args.dataset_name)
 
     # Validation samples are used to address overfitting and see how well your
     # model generalizes to yet unseen data. However, since the number of these
