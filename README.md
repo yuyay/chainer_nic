@@ -84,8 +84,8 @@ You can download them placed on Google drive from the following links.
 
 | Iteration 	| MSCOCO (en) 	| STAIR Captions (ja) 	|
 |----------:	|:-----------:	|:-------------------:	|
-| 10000     	|             	|                     	|
-| 20000     	|             	|                     	|
-| 30000     	|             	|                     	|
-| 40000     	|             	|                     	|
-| 50000     	|             	|                     	|
+| 10000     	| Modelfile            	| Modelfile                    	|
+| 20000     	| Modelfile            	| Modelfile                    	|
+| 30000     	| Modelfile            	| Modelfile                    	|
+| 40000     	| Modelfile            	| Modelfile                    	|
+| 50000     	| [Modelfile](https://drive.google.com/file/d/12OuDuiNkJ_sAhEy2MI7bLW8vLK_9kXyS/view?usp=sharing)            	| Modelfile                    	|
