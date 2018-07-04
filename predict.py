@@ -22,7 +22,7 @@ def main():
                         help='Image directory path, instead of a single image')
     parser.add_argument('--model', type=str, default='result/model_1000',
                         help='Trained model path')
-    parser.add_argument('--dataset-name', type=str, default='mscoco', choices=["mscoco", "stair_captions"]
+    parser.add_argument('--dataset-name', type=str, default='mscoco', choices=["mscoco", "stair_captions"],
                         help='MSCOCO dataset root directory')
     parser.add_argument('--mscoco-root', type=str, default='data',
                         help='MSOCO dataset root directory')

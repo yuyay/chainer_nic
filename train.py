@@ -16,7 +16,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--out', type=str, default='result',
                         help='Output directory')
-    parser.add_argument('--dataset-name', type=str, default='mscoco', choices=["mscoco", "stair_captions"]
+    parser.add_argument('--dataset-name', type=str, default='mscoco', choices=["mscoco", "stair_captions"],
                         help='MSCOCO dataset root directory')
     parser.add_argument('--mscoco-root', type=str, default='data',
                         help='MSCOCO dataset root directory')
