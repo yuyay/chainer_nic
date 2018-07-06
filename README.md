@@ -80,7 +80,7 @@ Note that `--rnn` and `--dataset-name` need to given the correct value correspon
 
 ## Pretrained Models
 
-We provided the models trained on the MSCOCO and the STAIR Captions.
+I provided the models trained on the MSCOCO and the STAIR Captions.
 You can download them placed on Google drive from the following links.
 
 | Iteration 	| MSCOCO (en) 	| STAIR Captions (ja) 	|
