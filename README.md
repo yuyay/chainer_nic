@@ -11,8 +11,8 @@ Most of the codes included in this repository are copied or recreated from chain
 
 This example requires the following packages.
 
-- Chainer >4.0
-- Cupy >4.0 (if you use GPU)
+- Chainer >=4.0
+- Cupy >=4.0 (if you use GPU)
 - PIL
 - pycocotools
 
@@ -70,10 +70,11 @@ To generate captions for new images, you need to have a snapshot of a trained mo
 Assuming we are using the model snapshots from the training example after 20000 iterations, we can generate new captions as follows.
 
 ```bash
-$ python predict.py --img cat.jpg --model result/model_20000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco
+$ python predict.py --img cat.jpg --model result/model_20000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json
 ```
 
 It will print out the generated captions to std out.
+A json file of a dictionary with an image path as key and a predicted caption as value is saved to `--out`.
 If you want to generate captions to all images in a directory, replace `--img` with `--img-dir` followed by the directory.
 Note that `--rnn` and `--dataset-name` need to given the correct value corresponding to the model.
 
@@ -92,7 +93,10 @@ You can download them placed on Google drive from the following links.
 
 ## Examples Using Pretrained Models
 
+For some images on the MSCOCO validation set, I generated captions using the pretrained models (Iteration 50000) of MSCOCO and STAIR Captions.
+
+
 | Image | MSCOCO (en) | STAIR Captions (ja) |
 |-------|-------------|---------------------|
-| ![](img/COCO_val2014_000000048530.jpg =100x) | a cat laying on a bed with a book . | 黒い 猫 が スーツケース の 中 に 入っ て いる |
-| ![](img/COCO_val2014_000000145039.jpg =100x) | a parking meter sitting on the side of a road . | パーキングメーター の 前 に 車 が 停 まっ て いる |
+| <img src="img/COCO_val2014_000000048530.jpg" width="100px" /> | a cat laying on a bed with a book . | 黒い 猫 が スーツケース の 中 に 入っ て いる |
+| <img src="img/COCO_val2014_000000145039.jpg" width="100px" /> | a parking meter sitting on the side of a road . | パーキングメーター の 前 に 車 が 停 まっ て いる |
