@@ -1,7 +1,7 @@
 # Image Captioning with Convolutional Neural Networks trained on MSCOCO and STAIR Captions (Japanese)
 
 This is an implementation of Show and Tell: A Neural Image Caption Generator (https://arxiv.org/abs/1411.4555) a generative image captioning model using a neural network with convolutional and recurrent layers.
-The model can be trained on MSCOCO and STAIR Captions that Japanese captions are annotated to MSCOCO images.
+The model can be trained on [MSCOCO](http://cocodataset.org/#home) and [STAIR Captions](http://captions.stair.center) that Japanese captions are annotated to MSCOCO images.
 Given an image, this model generates a sentence that describes it.
 
 Most of the codes included in this repository are copied or recreated from chainer examples `https://github.com/chainer/chainer/tree/master/examples/image_captioning`.
