@@ -98,5 +98,5 @@ For some images on the MSCOCO validation set, I generated captions using the pre
 
 | Image | MSCOCO (en) | STAIR Captions (ja) |
 |-------|-------------|---------------------|
-| <img src="img/COCO_val2014_000000048530.jpg" width="100px" /> | a cat laying on a bed with a book . | 黒い 猫 が スーツケース の 中 に 入っ て いる |
-| <img src="img/COCO_val2014_000000145039.jpg" width="100px" /> | a parking meter sitting on the side of a road . | パーキングメーター の 前 に 車 が 停 まっ て いる |
+| <img src="img/COCO_val2014_000000048530.jpg" width="200px" /> | a cat laying on a bed with a book . | 黒い 猫 が スーツケース の 中 に 入っ て いる |
+| <img src="img/COCO_val2014_000000145039.jpg" width="200px" /> | a parking meter sitting on the side of a road . | パーキングメーター の 前 に 車 が 停 まっ て いる |
