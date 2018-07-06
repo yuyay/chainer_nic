@@ -6,6 +6,7 @@ Given an image, this model generates a sentence that describes it.
 
 Most of the codes included in this repository are copied or recreated from chainer examples `https://github.com/chainer/chainer/tree/master/examples/image_captioning`.
 
+**NOTE: The hyperparameters of NIC model and the provided pretrained models may NOT be optimal. So, please re-train the model when you want to use the codes in this repository as a baseline model in your scientific experiments.**
 
 ## Requirements
 
