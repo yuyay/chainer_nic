@@ -1,2 +1,0 @@
-trained_models/stair_captions/model_50000 filter=lfs diff=lfs merge=lfs -text
-trained_models/mscoco/model_50000 filter=lfs diff=lfs merge=lfs -text
